@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Check - Cek Kualitas Air</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #ffffff; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar-nav .nav-link {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #0056b3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 70px;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .water-testing-container {
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            background-image: url(https://www.pixelstalk.net/wp-content/uploads/2016/04/Water-Wallpaper-Pictures-Photos-download-free.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 156px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .water-testing {
+            background: white;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+        
+        .water-testing h2 {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input, select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+        
+        .submit-btn {
+            padding: 15px 50px;
+            background: linear-gradient(135deg, #00bfff, #007bff);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            align-self: center;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .water-testing {
+                padding: 30px 15px;
+            }
+        
+            .form-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        
+            .form-box {
+                padding: 20px;
+            }
+        
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        /* Hasil Tes Section */
+        .results-overview {
+            background-image: url('https://trade-chem.co.uk/wp-content/uploads/2023/07/Distilled-Water.jpg');  /* Ganti dengan path gambar latar belakang */
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .results-overview h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .results-overview .result-box {
+            display: inline-block;
+            width: 250px;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .results-overview .result-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .results-overview .result-box .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .results-overview .result-box .value {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .results-overview .result-box .unit {
+           font-size: 18px;
+           font-weight: 500;
+        }
+
+/* Grafik Area */
+        .chart-container {
+           margin-top: 40px;
+           text-align: center;
+        }
+
+        .chart-container img {
+           width: 80%;
+           max-width: 600px;
+           border-radius: 12px;
+           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling untuk footer */
+footer {
+    background: linear-gradient(135deg, #007bff, #00c6ff); /* Gradien warna biru */
+    color: white;
+    padding: 50px 20px;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center; /* Memastikan konten footer terpusat secara horizontal */
+    align-items: center;     /* Memastikan konten footer terpusat secara vertikal */
+    flex-direction: column;  /* Mengatur konten menjadi kolom */
+    position: relative;
+    min-height: 200px;
+}
+
+/* Container untuk semua konten footer */
+.footer-content {
+    width: 100%;
+    max-width: 1200px; /* Batas lebar konten agar tidak terlalu lebar */
+    display: flex;
+    justify-content: space-between; /* Membuat ruang antara Contact Us dan Follow Us */
+    gap: 30px;
+    flex-wrap: wrap; /* Agar elemen tetap rapi pada ukuran layar kecil */
+    text-align: center; /* Mengatur teks agar tetap berada di tengah */
+}
+
+/* Styling untuk link dan kontak */
+footer .links,
+footer .contact,
+footer .social {
+    flex: 1;
+    min-width: 200px; /* Membuat setiap bagian memiliki lebar minimal */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling untuk bagian 'Contact Us' */
+footer .contact {
+    flex: 2; /* Memberikan lebih banyak ruang untuk bagian 'Contact Us' */
+    text-align: left; /* Menyusun teks ke kiri */
+}
+
+/* Styling untuk 'Contact Us' */
+footer .contact p {
+    font-size: 16px;
+}
+
+footer .contact h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Styling untuk bagian 'Follow Us' */
+footer .social {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    text-align: right; /* Mengatur teks Follow Us ke kanan */
+}
+
+footer .social h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+footer .social a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end; /* Memastikan tautan follow berada di kanan */
+}
+
+footer .social i {
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+footer .social a:hover i {
+    transform: scale(1.2); /* Efek pembesaran pada ikon sosial media */
+}
+
+/* Styling untuk link */
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color:black; 
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="https://logowik.com/content/uploads/images/water-drop2568.logowik.com.webp" style="height: 40px; margin-right: 10px;">
+            Aqua Check
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/water-testing">Water Testing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/input-test">input Testing</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="water-testing-container">
+        <section class="water-testing" id="water-testing">
+            <h2>Water Quality Testing</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="wilayah"><i class="fas fa-map-marker-alt"></i> Masukkan Wilayah:</label>
+                <input type="text" name="wilayah" id="wilayah" placeholder="Contoh: yogyakarta">
+
+                <label for="kecamatan"><i class="fas fa-city"></i> Masukkan Kecamatan:</label>
+                <input type="text" name="kecamatan" id="kecamatan" placeholder="Contoh: Gunung kidul">
+    
+                <label for="sungai"><i class="fas fa-water"></i> Masukkan Nama Sungai:</label>
+                <input type="text" name="sungai" id="sungai" placeholder="Contoh: Purbasadeng">
+    
+                <button type="submit" class="submit-btn">Cek Kualitas Air</button>
+            </form>
+        </section>
+    </div>
+
+    {% if show_results %}
+    <section class="results-overview">
+        <h2>Hasil Tes Kualitas Air</h2>
+        <p><i class="fas fa-map-marker-alt"></i> Wilayah: <strong>{{ wilayah }}</strong></p>
+        <p><i class="fas fa-city"></i> Kecamatan: <strong>{{ kecamatan }}</strong></p>
+        <p><i class="fas fa-water"></i> Sungai: <strong>{{ sungai }}</strong></p>
+    
+        <div class="result-cards">
+            <div class="result-box">
+                <div class="icon"><i class="fas fa-flask"></i></div>
+                <div class="title">PH Level</div>
+                <div class="value">{{ hasil['ph'] }}</div>
+                <div class="unit">pH</div>
+                <div class="status">{{ perbandingan['ph'] }}</div>
+            </div>
+            <div class="result-box">
+                <div class="icon"><i class="fas fa-tint"></i></div>
+                <div class="title">Amonia</div>
+                <div class="value">{{ hasil['Amonia'] }}</div>
+                <div class="unit">µmol/L</div>
+                <div class="status">{{ perbandingan['Amonia'] }}</div>
+            </div>
+            <div class="result-box">
+                <div class="icon"><i class="fas fa-thermometer-half"></i></div>
+                <div class="title">BOD Level</div>
+                <div class="value">{{ hasil['Biological Oxygen Demand'] }}</div>
+                <div class="unit">BOD</div>
+                <div class="status">{{ perbandingan['Biological Oxygen Demand'] }}</div>
+            </div>
+            <div class="result-box">
+                <div class="icon"><i class="fas fa-bolt"></i></div>
+                <div class="title">TDS</div>
+                <div class="value">{{ hasil['Total Dissolved Solids'] }}</div>
+                <div class="unit">mg/L</div>
+                <div class="status">{{ perbandingan['Total Dissolved Solids'] }}</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ img_base64 }}" alt="Water Quality Chart">
+        </div>
+    </section>
+{% endif %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="alert alert-warning mt-4" role="alert">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact">
+                <h4>Contact Us</h4>
+                <p>Email: info@aquacheck.com</p>
+                <p>Phone: +62 123 456 789</p>
+            </div>
+            <div class="social">
+                <h4>Follow Us</h4>
+                <a href="https://facebook.com/aquacheck" target="_blank">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://twitter.com/aquacheck" target="_blank">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="https://instagram.com/aquacheck" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

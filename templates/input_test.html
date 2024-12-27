@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Check - Cek Kualitas Air</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #ffffff; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar-nav .nav-link {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #0056b3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 70px;
+            background-color: #f5f5f5;
+        }
+        
+        body {
+            margin: 50px
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/04/Water-Wallpaper-Pictures-Photos-download-free.jpg');
+            background-size: cover; /* Gambar memenuhi layar */
+            background-repeat: no-repeat; /* Menghindari pengulangan gambar */
+            background-position: center; /* Gambar di tengah */
+            background-attachment: fixed; /* Gambar tetap saat halaman di-scroll */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+
+        button.submit-button {
+            background: linear-gradient(135deg, #00bfff, #007bff);
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button.submit-button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d7f);
+            transform: translateY(-2px);
+        }
+
+        /* Styling untuk footer */
+        footer {
+            background: linear-gradient(135deg, #007bff, #00c6ff); /* Gradien warna biru */
+            color: white;
+            padding: 50px 20px;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center; /* Memastikan konten footer terpusat secara horizontal */
+            align-items: center;     /* Memastikan konten footer terpusat secara vertikal */
+            flex-direction: column;  /* Mengatur konten menjadi kolom */
+            position: relative;
+            min-height: 200px;
+        }
+
+        /* Container untuk semua konten footer */
+        .footer-content {
+            width: 100%;
+            max-width: 1200px; /* Batas lebar konten agar tidak terlalu lebar */
+            display: flex;
+            justify-content: space-between; /* Membuat ruang antara Contact Us dan Follow Us */
+            gap: 30px;
+            flex-wrap: wrap; /* Agar elemen tetap rapi pada ukuran layar kecil */
+            text-align: center; /* Mengatur teks agar tetap berada di tengah */
+        }
+
+        /* Styling untuk link dan kontak */
+        footer .links,
+        footer .contact,
+        footer .social {
+            flex: 1;
+            min-width: 200px; /* Membuat setiap bagian memiliki lebar minimal */
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Styling untuk bagian 'Contact Us' */
+        footer .contact {
+            flex: 2; /* Memberikan lebih banyak ruang untuk bagian 'Contact Us' */
+            text-align: left; /* Menyusun teks ke kiri */
+        }
+
+        /* Styling untuk 'Contact Us' */
+        footer .contact p {
+            font-size: 16px;
+        }
+
+        footer .contact h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Styling untuk bagian 'Follow Us' */
+        footer .social {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            text-align: right; /* Mengatur teks Follow Us ke kanan */
+        }
+
+        footer .social h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        footer .social a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-end; /* Memastikan tautan follow berada di kanan */
+        }
+
+        footer .social i {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        footer .social a:hover i {
+            transform: scale(1.2); /* Efek pembesaran pada ikon sosial media */
+        }
+
+        /* Styling untuk link */
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ffcc00; /* Efek hover warna kuning */
+        }
+
+        @media (max-width: 768px) {
+            .features .row {
+               flex-direction: column;
+               align-items: center;
+            }
+    
+            .features .col-md-6 {
+               width: 100%;
+               margin-bottom: 20px;
+            }
+    
+            .features .description {
+               margin-top: 20px;
+            }
+            }
+    </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <!-- Logo Gambar -->
+            <img src="https://logowik.com/content/uploads/images/water-drop2568.logowik.com.webp" style="height: 40px; margin-right: 10px;">
+            <!-- Nama Aqua Check -->
+            Aqua Check
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/water-testing">Water Testing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/input-test">input Testing</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- input data form -->
+<div class="container">
+    <h2>Input Data Pengujian Kualitas Air</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="wilayah" class="form-label">Wilayah</label>
+            <input type="text" class="form-control" id="wilayah" name="wilayah" required>
+        </div>
+        <div class="mb-3">
+            <label for="kecamatan" class="form-label">Kecamatan</label>
+            <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+        </div>
+        <div class="mb-3">
+            <label for="sungai" class="form-label">Sungai</label>
+            <input type="text" class="form-control" id="sungai" name="sungai" required>
+        </div>
+        <div class="mb-3">
+            <label for="ph" class="form-label">pH (Potential Hydrogen)</label>
+            <input type="number" step="0.01" class="form-control" id="ph" name="ph" required>
+        </div>
+        <div class="mb-3">
+            <label for="Amonia" class="form-label">Amonia</label>
+            <input type="number" step="0.01" class="form-control" id="Amonia" name="Amonia" required>
+        </div>
+        <div class="mb-3">
+            <label for="Biological_Oxygen_Demand" class="form-label">BOD (Biological Oxygen Demand)</label>
+            <input type="number" step="0.01" class="form-control" id="Biological_Oxygen_Demand" name="Biological Oxygen Demand" required>
+        </div>
+        <div class="mb-3">
+            <label for="Total_Dissolved_Solids" class="form-label">TDS (Total Dissolved Solids)</label>
+            <input type="number" step="0.01" class="form-control" id="Total_Dissolved_Solids" name="Total Dissolved Solids" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>    
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="contact">
+            <h4>Contact Us</h4>
+            <p>Email: info@aquacheck.com</p>
+            <p>Phone: +62 123 456 789</p>
+        </div>
+        <div class="social">
+            <h4>Follow Us</h4>
+            <a href="https://facebook.com/aquacheck" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://twitter.com/aquacheck" target="_blank">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="https://instagram.com/aquacheck" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
